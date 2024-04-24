@@ -10,6 +10,10 @@ class Issue extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "completed"
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

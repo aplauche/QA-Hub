@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Check;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,8 +15,8 @@ return new class extends Migration
         Schema::create('checks', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->enum('screen_size', [0, 1, 2, 3]);
-            $table->enum('browser', ["firefox", "safari", "chrome", "windows"]);
+            $table->enum('screen_size', Check::$screen_sizes);
+            $table->enum('browser', Check::$browsers);
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('website_id')->constrained()->cascadeOnDelete();
 

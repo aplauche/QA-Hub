@@ -7,13 +7,6 @@ use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -36,7 +29,9 @@ class WebsiteController extends Controller
      */
     public function show(Website $website)
     {
-        //
+        $issues = $website->issues()->get();
+
+        return view('websites.show', ["issues" => $issues]);
     }
 
     /**

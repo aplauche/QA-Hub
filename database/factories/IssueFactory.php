@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Check;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,8 +19,8 @@ class IssueFactory extends Factory
     {
         return [
             "page" => fake()->word(),
-            "browser" => fake()->randomElement(["firefox", "safari", "chrome"]),
-            "screen_size" => fake()->randomElement(["mobile", "tablet", "desktop"]),
+            "browser" => fake()->randomElement(Check::$browsers),
+            "screen_size" => fake()->randomElement(Check::$screen_sizes),
             "description" => fake()->sentence(10),
         ];
     }

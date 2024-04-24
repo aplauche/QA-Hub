@@ -3,6 +3,7 @@
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebsiteController;
+use App\Models\Website;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,7 +11,10 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+
+    $websites = Website::all();
+
+    return view('dashboard', ["websites" => $websites]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -19,8 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 
-    Route::resource('/website', WebsiteController::class);
-    Route::resource('website/{website}/issue', IssueController::class)->except(["show"]);
+    Route::resource('/website', WebsiteController::class)->except(["index"]);
+    Route::resource('website/{website}/issue', IssueController::class)->except(["show", "index"]);
 });
 
 require __DIR__ . '/auth.php';
