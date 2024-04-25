@@ -34,6 +34,10 @@ class IssueCard extends Component
     {
         $this->issue->delete();
 
-        return redirect()->route("website.show", ["website" => $this->website])->with("success", "deleted!");
+        session()->flash("success", "deleted!");
+
+        $this->redirectRoute("issues.index", ["website" => $this->website]);
+
+        //return redirect()->route("website.show", ["website" => $this->website])->with("success", "deleted!");
     }
 }

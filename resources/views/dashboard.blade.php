@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4">
 
             @forelse ($websites as $website)
-                <a href="{{ route('website.show', $website) }}" class="bg-white shadow-sm sm:rounded-lg block p-5">
+                <a href="{{ route('websites.show', $website) }}" class="bg-white shadow-sm sm:rounded-lg block p-5">
                     <h3>{{ $website->title }}</h3>
                 </a>
             @empty

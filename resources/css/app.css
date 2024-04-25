@@ -20,3 +20,17 @@
   animation: fadeOut 0.5s 2s forwards;
   //transition: opacity 0.5s ease-in-out;
 }
+
+.btn {
+  @apply rounded py-1 px-4;
+}
+
+.btn-primary {
+  @apply bg-slate-300 hover:bg-slate-500;
+}
+.btn-danger {
+  @apply bg-red-300 hover:bg-red-500;
+}
+.btn-success {
+  @apply bg-green-300 hover:bg-green-500;
+}

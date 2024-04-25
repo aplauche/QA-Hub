@@ -29,7 +29,7 @@ class WebsiteController extends Controller
      */
     public function show(Website $website)
     {
-        $issues = $website->issues()->get();
+        $issues = $website->issues()->with('user')->get();
 
         return view('websites.show', ["issues" => $issues, "website" => $website]);
     }

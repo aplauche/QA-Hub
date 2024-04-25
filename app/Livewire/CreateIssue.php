@@ -27,7 +27,7 @@ class CreateIssue extends Component
 
         session()->flash('success', 'Issue Added!');
 
-        return redirect()->route("website.show", ["website" => $this->website]);
+        return $this->redirectRoute("issues.index", ["website" => $this->website]);
     }
 
     public function render()
