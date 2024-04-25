@@ -11,7 +11,13 @@ class Issue extends Model
     use HasFactory;
 
     protected $fillable = [
-        "completed"
+        "completed",
+        "page",
+        "browser",
+        "screen_size",
+        "description",
+        "screenshot",
+        "website_id"
     ];
 
     public function user(): BelongsTo

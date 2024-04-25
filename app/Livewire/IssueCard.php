@@ -3,11 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Issue;
+use App\Models\Website;
 use Livewire\Component;
 
 class IssueCard extends Component
 {
     public Issue $issue;
+    public Website $website;
 
     public function render()
     {
@@ -26,5 +28,12 @@ class IssueCard extends Component
         $this->issue->update([
             "completed" => false
         ]);
+    }
+
+    public function deleteIssue()
+    {
+        $this->issue->delete();
+
+        return redirect()->route("website.show", ["website" => $this->website])->with("success", "deleted!");
     }
 }

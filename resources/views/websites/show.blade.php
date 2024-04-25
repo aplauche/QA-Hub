@@ -8,9 +8,18 @@
   <div class="py-12">
       <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4">
 
+        <div x-data="{show: false}">
+
+          <button class="button-primary" @click="show = !show" x-text="!show ? 'Add Issues' : 'Collapse' ">Show Issue Form</button>
+          <div x-show="show">
+            <livewire:create-issue :website="$website"/>
+          </div>
+        </div>
+
+
         @foreach ($issues as $issue)
 
-          <livewire:issue-card :issue="$issue" :key="$issue->id" />
+          <livewire:issue-card :website="$website" :issue="$issue" :key="$issue->id" />
             
         @endforeach
 

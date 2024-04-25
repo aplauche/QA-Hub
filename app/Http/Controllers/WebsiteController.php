@@ -31,7 +31,7 @@ class WebsiteController extends Controller
     {
         $issues = $website->issues()->get();
 
-        return view('websites.show', ["issues" => $issues]);
+        return view('websites.show', ["issues" => $issues, "website" => $website]);
     }
 
     /**

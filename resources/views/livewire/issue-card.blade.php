@@ -10,7 +10,7 @@
       {{ $issue->description }}
     </div>
 
-    <div class="grow-0">
+    <div class="grow-0 flex flex-col items-end">
         @if ($issue->completed)
             <button class="block p-4 rounded bg-red-100" wire:click='markIncomplete'>
                 Mark Incomplete
@@ -20,6 +20,10 @@
                 Mark Complete
             </button>
         @endif
+
+        <button wire:confirm='deleteIssue'>
+            Delete
+        </button>
     </div>
   
   </div>
