@@ -11,6 +11,9 @@
             @forelse ($websites as $website)
                 <a href="{{ route('websites.show', $website) }}" class="bg-white shadow-sm sm:rounded-lg block p-5">
                     <h3>{{ $website->title }}</h3>
+                    {{-- <div>
+                        {{ $completed_count }} / {{ $issue_count }} issues resolved
+                      </div> --}}
                 </a>
             @empty
                 <div class="bg-white shadow-sm sm:rounded-lg block p-5">

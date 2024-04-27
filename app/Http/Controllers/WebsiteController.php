@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Check;
 use App\Models\Website;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,48 @@ class WebsiteController extends Controller
      */
     public function show(Website $website)
     {
-        $issues = $website->issues()->with('user')->get();
+        // for performance potentially preload checks?
+        // $checks = $website->checks()->with('user')->get();
 
-        return view('websites.show', ["issues" => $issues, "website" => $website]);
+        $issue_count = $website->issues()->count();
+        $completed_count = $website->issues()->where("completed", true)->count();
+
+        // constant definitions for the checks
+        $screen_sizes = Check::$screen_sizes;
+        $browsers = Check::$browsers;
+        $matrix = Check::$matrix;
+
+        $checks = [];
+
+        // Structure the QA checks as an iterable multilevel array
+        foreach ($matrix as $browser => $enabled_sizes) {
+            $checks[$browser] = [];
+            foreach ($screen_sizes as $size) {
+                if (in_array($size, $enabled_sizes)) {
+                    $match = Check::where("website_id", $website->id)
+                        ->where("screen_size", $size)
+                        ->where("browser", $browser)
+                        ->with('user')
+                        ->get();
+                    $checks[$browser][$size] = $match;
+                } else {
+                    $checks[$browser][$size] = false;
+                }
+            }
+        }
+
+        //dd($checks);
+
+
+        return view('websites.show', [
+            "checks" => $checks,
+            "website" => $website,
+            "screen_sizes" => $screen_sizes,
+            "browsers" => $browsers,
+            "checks" => $checks,
+            "issue_count" => $issue_count,
+            "completed_count" => $completed_count
+        ]);
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebsiteController;
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/websites', WebsiteController::class)->except(["index"]);
     Route::resource('websites/{website}/issues', IssueController::class)->except(["show"]);
+    Route::resource('websites/{website}/checks', CheckController::class)->only(["store", "destroy"]);
 });
 
 require __DIR__ . '/auth.php';

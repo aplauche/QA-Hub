@@ -21,6 +21,39 @@
   //transition: opacity 0.5s ease-in-out;
 }
 
+
+.chip {
+  @apply rounded-full flex items-center justify-center p-2 bg-violet-300 w-8 h-8
+}
+
+.qa-grid-form, .qa-grid-button {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.qa-grid-button {
+  z-index: 2;
+}
+
+.toggle-links {
+  @apply flex items-center justify-center gap-2 font-bold;
+}
+
+.toggle-links a {
+  @apply px-3 py-1 block rounded border-2;
+
+  &.active {
+    @apply bg-slate-300 border-slate-300;
+  }
+
+  &:not(.active){
+    @apply opacity-50;
+  }
+}
+
 .btn {
   @apply rounded py-1 px-4;
 }

@@ -10,6 +10,12 @@ class Check extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "browser",
+        "screen_size",
+        "website_id"
+    ];
+
     static array $browsers = [
         "Chrome",
         "Firefox",
@@ -21,6 +27,15 @@ class Check extends Model
 
     static array $screen_sizes = [
         375, 768, 1024, 1440, 1600
+    ];
+
+    static array $matrix = [
+        "Chrome" => [1024, 1440, 1600],
+        "Firefox" => [1024, 1440, 1600],
+        "Edge" => [1024, 1440, 1600],
+        "Safari" => [1024, 1440, 1600],
+        "IOS Safari" => [375, 768],
+        "Android Chrome" => [375, 768]
     ];
 
 
