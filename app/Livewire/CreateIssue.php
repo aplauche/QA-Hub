@@ -7,9 +7,12 @@ use Livewire\Attributes\Validate;
 use App\Models\Issue;
 use App\Models\Website;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class CreateIssue extends Component
 {
+
+    use WithFileUploads;
 
     public Website $website;
     public IssueForm $form;
@@ -26,7 +29,7 @@ class CreateIssue extends Component
 
         $this->form->store();
 
-        session()->flash('success', 'Issue Added!');
+        session()->flash('success', 'New issue created and logged!');
 
         if ($this->isQA) {
             return $this->redirectRoute("websites.show", ["website" => $this->website]);

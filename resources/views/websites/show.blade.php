@@ -6,26 +6,26 @@
         </h2>
         <div class="toggle-links flex">
           <a href="{{route("websites.show", ["website" => $website ])}}" class="{{ request()->routeIs('websites.show') ? 'active' : '' }}">QA Site</a>
-          <a href="{{route("issues.index", ["website" => $website ])}}" class="{{ request()->routeIs('issues.index') ? 'active' : '' }}">Resolve Issues</a>
+          <a href="{{route("issues.index", ["website" => $website ])}}" class="{{ request()->routeIs('issues.index') ? 'active' : '' }}">Issue Tracker</a>
         </div>
       </div>
   </x-slot>
 
-  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 pb-10">
 
     <table class="w-full table-fixed text-center table mt-10">
       <thead>
         <tr class=" ">
           <td class=""></td>
           @foreach ($screen_sizes as $size)
-              <td class=" bg-slate-300 font-bold border  px-8 py-4">{{$size}}</td>
+              <td class=" bg-neutral-800 text-white font-bold border  px-8 py-4">{{$size}}px</td>
           @endforeach
         </tr>
       </thead>
       <tbody>
         @foreach ($checks as $browser => $sizes)
             <tr>
-              <td class="border px-8 py-4">{{$browser}}</td>
+              <td class="border px-8 py-4 bg-neutral-800 text-white font-bold">{{$browser}}</td>
               @foreach ($sizes as $size => $reviewers)
                 @if ($reviewers)
 
@@ -54,7 +54,7 @@
 
                   @else
                     {{-- Table cell complete by user --}}
-                    <td class="relative border cursor-pointer hover:bg-neutral-100 bg-green-50">
+                    <td class="relative border cursor-pointer hover:bg-neutral-100 bg-white">
                       <div class="flex w-full justify-center">
   
                         @foreach ($reviewers as $review)
@@ -80,7 +80,7 @@
                   @endif
                 @else
                   {{-- Table cell not enabled for review --}}
-                  <td class=" px-8 py-4 bg-slate-200"></td>
+                  <td class=" px-8 py-4 bg-neutral-300"></td>
                 @endif
     
               @endforeach
@@ -89,7 +89,8 @@
       </tbody>
     </table>
 
-    <div class="mt-8">
+    <div class="mt-10">
+      <h3 class="mb-4 font-bold text-xl">Log issues:</h3>
       <livewire:create-issue :website="$website" :isQA="true" />
     </div>
 

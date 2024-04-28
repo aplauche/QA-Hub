@@ -44,7 +44,7 @@ class CheckController extends Controller
         ]);
 
 
-        return redirect()->route("websites.show", ["website" => $website])->with("success", "QA marked complete");
+        return redirect()->route("websites.show", ["website" => $website]);
     }
 
     /**

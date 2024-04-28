@@ -11,6 +11,8 @@ class IssueCard extends Component
     public Issue $issue;
     public Website $website;
 
+    public $modalOpen = false;
+
     public function render()
     {
         return view('livewire.issue-card');
@@ -28,6 +30,16 @@ class IssueCard extends Component
         $this->issue->update([
             "completed" => false
         ]);
+    }
+
+    public function showModal()
+    {
+        $this->modalOpen = true;
+    }
+
+    public function hideModal()
+    {
+        $this->modalOpen = false;
     }
 
     public function deleteIssue()

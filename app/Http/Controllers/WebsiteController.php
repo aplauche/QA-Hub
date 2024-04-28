@@ -14,7 +14,7 @@ class WebsiteController extends Controller
      */
     public function create()
     {
-        //
+        return view("websites.create");
     }
 
     /**
@@ -22,7 +22,14 @@ class WebsiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            "title" => "required|string|min:3",
+            "url" => "required|string|min:3"
+        ]);
+
+        auth()->user()->websites()->create($validated);
+
+        return redirect()->route("dashboard")->with("success", "New website project created!");
     }
 
     /**
@@ -79,7 +86,7 @@ class WebsiteController extends Controller
      */
     public function edit(Website $website)
     {
-        //
+        return view('websites.edit', ["website" => $website]);
     }
 
     /**
@@ -87,7 +94,14 @@ class WebsiteController extends Controller
      */
     public function update(Request $request, Website $website)
     {
-        //
+        $validated = $request->validate([
+            "title" => "required|string|min:3",
+            "url" => "required|string|min:3"
+        ]);
+
+        $website->update($validated);
+
+        return redirect()->route("dashboard")->with("success", "{$website->title} has been updated!");
     }
 
     /**
@@ -95,6 +109,8 @@ class WebsiteController extends Controller
      */
     public function destroy(Website $website)
     {
-        //
+        $website->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Project successfully deleted.');
     }
 }

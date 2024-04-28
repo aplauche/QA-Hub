@@ -11,6 +11,10 @@ class Website extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "title",
+        "url"
+    ];
 
 
     public function user(): BelongsTo

@@ -1,0 +1,11 @@
+@props(['name', 'label', 'model'])
+
+<div class="mb-4">
+  <label for="{{ $name }}" class="block font-medium text-sm text-gray-700">
+    {{ $label }}
+  </label>
+  <input id="{{ $name }}" name="{{$name}}" wire:model="{{ $model }}" {{ $attributes->merge(['class' => 'w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm']) }}>
+  @error( $model )
+      <div class="text-red-500">{{ $message }}</div>
+  @enderror
+</div>
