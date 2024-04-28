@@ -20,7 +20,11 @@
 
 
 .chip {
-  @apply rounded-full flex items-center justify-center p-2  bg-green-400 w-8 h-8
+  @apply rounded-full flex items-center justify-center p-2  bg-green-100 w-8 h-8;
+
+  &.chip-self {
+    @apply bg-green-400;
+  }
 }
 
 .qa-grid-form, .qa-grid-button {

@@ -1,4 +1,4 @@
-<table class="w-full table-fixed text-center table mt-10">
+<table wire:poll class="w-full table-fixed text-center table mt-10">
     <thead>
       <tr class=" ">
         <td class=""></td>
@@ -15,15 +15,16 @@
               @if ($reviewers)
            
                   <td class="relative border cursor-pointer hover:bg-neutral-100 bg-white">
-                    <div class="flex w-full justify-center">
+                    <div class="flex w-full justify-center items-center gap-1">
 
                       @foreach ($reviewers as $review)
-                        <div class="chip">
-                          {{ substr($review->user->name, 0, 1) }}
-                        </div>
+
                         {{-- Delete form for check done by current user --}}
                         @if ($review->user_id === auth()->user()->id)
-                        <button class="qa-grid-form" wire:click="markIncomplete({{ $review->id }})"></button>
+                            <div class="chip chip-self">
+                                {{ substr($review->user->name, 0, 1) }}
+                            </div>
+                            <button class="qa-grid-form" wire:click="markIncomplete({{ $review->id }})"></button>
                         {{-- <form class="qa-grid-form" action="{{ route("checks.destroy", ["website" => $website, "check" => $review]) }}" method="POST">
                           @csrf
                           @method("DELETE")
@@ -31,6 +32,10 @@
                           <input type="hidden" name="size" value="{{ $size }}" />
                           <button type="submit" class="qa-grid-button"></button>
                         </form> --}}
+                        @else
+                            <div class="chip">
+                                {{ substr($review->user->name, 0, 1) }}
+                            </div>
                         @endif
                       @endforeach
 
