@@ -23,6 +23,8 @@ class IssueCard extends Component
         $this->issue->update([
             "completed" => true
         ]);
+
+        $this->dispatch("issueListChange");
     }
 
     public function markIncomplete()
@@ -30,6 +32,8 @@ class IssueCard extends Component
         $this->issue->update([
             "completed" => false
         ]);
+
+        $this->dispatch("issueListChange");
     }
 
     public function showModal()
@@ -46,9 +50,11 @@ class IssueCard extends Component
     {
         $this->issue->delete();
 
-        session()->flash("success", "deleted!");
+        $this->dispatch("issueListChange");
 
-        $this->redirectRoute("issues.index", ["website" => $this->website]);
+        // session()->flash("success", "deleted!");
+
+        // $this->redirectRoute("issues.index", ["website" => $this->website]);
 
         //return redirect()->route("website.show", ["website" => $this->website])->with("success", "deleted!");
     }

@@ -12,7 +12,7 @@
   </x-slot>
 
   <div class="py-12">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col gap-4">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 ">
 
         {{-- <div x-data="{show: false}">
 
@@ -22,13 +22,15 @@
           </div>
         </div> --}}
 
-        
+        <livewire:issue-list :website="$website" />
 
+        
+{{-- 
         @foreach ($issues as $issue)
 
           <livewire:issue-card :website="$website" :issue="$issue" :key="$issue->id" />
             
-        @endforeach
+        @endforeach --}}
 
       </div>
   </div>
