@@ -67,9 +67,6 @@ class WebsiteController extends Controller
             }
         }
 
-        //dd($checks);
-
-
         return view('websites.show', [
             "checks" => $checks,
             "website" => $website,
