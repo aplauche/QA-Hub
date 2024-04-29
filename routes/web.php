@@ -11,14 +11,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/pending', function () {
+    return view('pending');
+})->name('pending');
+
 Route::get('/dashboard', function () {
 
     $websites = Website::all();
 
     return view('dashboard', ["websites" => $websites]);
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

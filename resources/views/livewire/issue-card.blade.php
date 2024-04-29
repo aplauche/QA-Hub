@@ -26,7 +26,8 @@
         </div>
       @endif
     @else
-      <div class="w-[200px] grow-0 shrink-0 bg-slate-200">
+      <div class="w-[200px] text-neutral-500 grow-0 shrink-0 border border-dashed border-black grid place-content-center">
+        No screenshot
       </div>
     @endif
 
