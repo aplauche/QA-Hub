@@ -141,3 +141,11 @@
     object-fit: contain;
   }
 }
+
+.progress-container {
+  @apply h-[8px] w-[200px] bg-neutral-300 rounded-full;
+
+  .progress {
+    @apply h-[8px] rounded-full bg-green-400 block;
+  }
+}

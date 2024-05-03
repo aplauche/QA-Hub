@@ -17,7 +17,7 @@ Route::get('/pending', function () {
 
 Route::get('/dashboard', function () {
 
-    $websites = Website::all();
+    $websites = Website::withIssueCounts()->get();
 
     return view('dashboard', ["websites" => $websites]);
 })->middleware(['auth', 'verified', 'isAdmin'])->name('dashboard');

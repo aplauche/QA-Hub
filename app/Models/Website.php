@@ -31,4 +31,14 @@ class Website extends Model
     {
         return $this->hasMany(Check::class);
     }
+
+    public function scopeWithIssueCounts($query)
+    {
+        return $query->withCount([
+            'issues as total_issues_count',
+            'issues as completed_issues_count' => function ($query) {
+                return $query->where('completed', true);
+            }
+        ]);
+    }
 }
