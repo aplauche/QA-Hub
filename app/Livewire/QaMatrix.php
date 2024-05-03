@@ -14,7 +14,6 @@ class QaMatrix extends Component
     public $matrix;
     public Website $website;
     public $checks = [];
-    public $refresh;
 
     public function mount()
     {
