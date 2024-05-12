@@ -35,17 +35,26 @@ class IssueController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Issue $issue)
+    public function edit(Website $website, Issue $issue)
     {
-        //
+        return view('issues.edit', ["website" => $website, "issue" => $issue]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Issue $issue)
+    public function update(Request $request, Website $website, Issue $issue)
     {
-        //
+        $validated = $request->validate([
+            "page" => "required|string|min:3",
+            "browser" => "required|string|min:3",
+            "screen_size" => "required|string|min:3",
+            "description" => "required|string|min:3",
+        ]);
+
+        $issue->update($validated);
+
+        return redirect()->route('issues.index', ["website" => $issue->website->id])->with("success", "Issue updated!");
     }
 
     /**
