@@ -16,6 +16,15 @@ class Website extends Model
         "url"
     ];
 
+    protected static function booted()
+    {
+        // manually delete associated issues to fire the deleted event and remove any images
+        static::deleting(function (Website $website) {
+            $issues = $website->issues()->get();
+            Issue::destroy($issues);
+        });
+    }
+
 
     public function user(): BelongsTo
     {

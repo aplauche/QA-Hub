@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Storage;
 
 class Issue extends Model
 {
@@ -19,6 +20,18 @@ class Issue extends Model
         "screenshot",
         "website_id"
     ];
+
+    protected static function booted()
+    {
+        static::deleting(function (Issue $issue) {
+            if ($issue->screenshot) {
+
+                $screenshot_path = str_replace('storage/', 'public/', $issue->screenshot);
+
+                Storage::delete($screenshot_path);
+            }
+        });
+    }
 
     public function user(): BelongsTo
     {
