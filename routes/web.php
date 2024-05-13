@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/pending', function () {
-    return view('pending');
-})->name('pending');
+})->name('welcome');
 
 Route::get('/dashboard', function () {
 

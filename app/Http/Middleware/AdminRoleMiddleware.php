@@ -21,7 +21,7 @@ class AdminRoleMiddleware
         }
 
         if ($request->user() && $request->user()->role !== 'admin') {
-            return redirect()->route('pending');
+            return redirect()->route('welcome');
         }
 
         return redirect()->route('login');

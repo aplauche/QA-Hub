@@ -3,15 +3,22 @@
     <div class="">
         <h3 class="text-center font-bold text-3xl mb-8">Welcome</h3>
     </div>
+    @auth
+        @if (auth()->user()->role !== "admin")
+            <p class="text-center my-4 pb-5">Your account is still pending approval. Please try logging in later.</p>
+        @endif   
+    @endauth
     @if (Route::has('login'))
         <nav class="flex gap-4 items-center">
             @auth
-                <a
-                    href="{{ url('/dashboard') }}"
-                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] "
-                >
-                    Access Dashboard
-                </a>
+                @if (auth()->user()->role === "admin")
+                    <a
+                        href="{{ url('/dashboard') }}"
+                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] "
+                    >
+                        Access Dashboard
+                    </a>
+                @endif 
 
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
