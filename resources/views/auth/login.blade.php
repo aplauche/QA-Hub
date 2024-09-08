@@ -43,5 +43,8 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+        <a href="{{ route("github.redirect") }}">Login with github</a>
+        
     </form>
 </x-guest-layout>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CheckController;
+use App\Http\Controllers\GithubController;
 use App\Http\Controllers\IssueController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WebsiteController;
@@ -28,5 +29,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('websites/{website}/issues', IssueController::class)->except(["show"]);
     Route::resource('websites/{website}/checks', CheckController::class)->only(["store", "destroy"]);
 });
+
+Route::get('auth/github', [GithubController::class, 'redirectToGitHub'])->name('github.redirect');
+Route::get('auth/github/callback', [GithubController::class, 'handleGitHubCallback'])->name('github.callback');
 
 require __DIR__ . '/auth.php';
