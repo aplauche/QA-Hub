@@ -44,7 +44,10 @@
             </x-primary-button>
         </div>
 
-        <a href="{{ route("github.redirect") }}">Login with github</a>
+        <div class="flex  justify-center border-t border-black mt-8 py-6">
+            <a class="button btn btn-primary" href="{{ route("github.redirect") }}">Login with github</a>
+        </div>
+
         
     </form>
 </x-guest-layout>
