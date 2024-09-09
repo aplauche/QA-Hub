@@ -25,6 +25,9 @@ class IssueForm extends Form
     #[Validate('required|string')]
     public $description = "";
 
+    #[Validate('nullable|integer')]
+    public $priority = 1;
+
     #[Validate('nullable|image|max:4096')] // 4MB Max
     public $screenshot;
 
@@ -54,7 +57,8 @@ class IssueForm extends Form
             "screen_size" => $this->screen_size,
             "description" => $this->description,
             "screenshot" => $screenshot_url,
-            "website_id" => $this->website->id
+            "website_id" => $this->website->id,
+            "priority" => $this->priority
         ]);
     }
 }

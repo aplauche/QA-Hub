@@ -18,8 +18,22 @@ class Issue extends Model
         "screen_size",
         "description",
         "screenshot",
-        "website_id"
+        "website_id",
+        "priority"
     ];
+
+
+    public function getPriorityLabelAttribute()
+    {
+        $priortyDictionary = [
+            0 => "Low",
+            1 => "Normal",
+            2 => "High",
+            3 => "Critical"
+        ];
+
+        return $priortyDictionary[$this->priority] ?? "Normal";
+    }
 
     protected static function booted()
     {
