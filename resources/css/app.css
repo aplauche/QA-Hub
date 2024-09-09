@@ -151,3 +151,17 @@
     @apply h-[8px] rounded-full bg-green-400 block;
   }
 }
+
+
+.priority-0 {
+  @apply bg-gray-300;
+}
+.priority-1 {
+  @apply bg-blue-300;
+}
+.priority-2 {
+  @apply bg-yellow-300;
+}
+.priority-3 {
+  @apply bg-red-300;
+}

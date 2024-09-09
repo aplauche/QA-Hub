@@ -25,7 +25,7 @@ class IssueForm extends Form
     #[Validate('required|string')]
     public $description = "";
 
-    #[Validate('nullable|integer')]
+    #[Validate('nullable')]
     public $priority = 1;
 
     #[Validate('nullable|image|max:4096')] // 4MB Max
@@ -49,8 +49,6 @@ class IssueForm extends Form
             $screenshot_url = str_replace('public/', 'storage/', $screenshot_url); // Convert path to use 'storage' instead of 'public'    
         }
 
-
-
         auth()->user()->issues()->create([
             "page" => $this->page,
             "browser" => $this->browser,
@@ -58,7 +56,7 @@ class IssueForm extends Form
             "description" => $this->description,
             "screenshot" => $screenshot_url,
             "website_id" => $this->website->id,
-            "priority" => $this->priority
+            "priority" => (int) $this->priority
         ]);
     }
 }

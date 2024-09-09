@@ -22,6 +22,17 @@
                     <x-input-livewire name="page" label="Page/Location" model="form.page" />
                     <x-input-livewire name="browser" label="Browser(s)" model="form.browser" />
                     <x-input-livewire name="screen_size" label="Screen Size(s)" model="form.screen_size" />
+                    <div>
+                        <label for="priority" class="block font-medium text-sm text-gray-700">
+                            Priority Level
+                        </label>
+                        <select wire:model="form.priority" name="priority" id="priority">
+                            <option value="{{ 0 }}">Low</option>
+                            <option value="{{ 1 }}">Normal</option>
+                            <option value="{{ 2 }}">High</option>
+                            <option value="{{ 3 }}">Critical</option>
+                        </select>
+                    </div>
                 </div>
         
                 <x-input-livewire name="description" label="Issue description" model="form.description" />
