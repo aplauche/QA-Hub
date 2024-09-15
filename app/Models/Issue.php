@@ -22,17 +22,18 @@ class Issue extends Model
         "priority"
     ];
 
+    public static $priorityDictionary = [
+        0 => "Low",
+        1 => "Normal",
+        2 => "High",
+        3 => "Critical"
+    ];
+
 
     public function getPriorityLabelAttribute()
     {
-        $priortyDictionary = [
-            0 => "Low",
-            1 => "Normal",
-            2 => "High",
-            3 => "Critical"
-        ];
 
-        return $priortyDictionary[$this->priority] ?? "Normal";
+        return Issue::$priorityDictionary[$this->priority] ?? "Normal";
     }
 
     protected static function booted()

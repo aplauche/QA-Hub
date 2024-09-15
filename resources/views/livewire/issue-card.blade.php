@@ -43,7 +43,7 @@
     <div class="grow-0 flex flex-col gap-2 items-end justify-between">
    
       <div class="flex gap-3 items-center">
-        <div class="px-4 py-1 priority-{{ $issue->priority }} rounded">
+        <div class="priority-chip priority-{{ $issue->priority }}">
           {{ $issue->priority_label }} Priority
         </div>
         @if (!$issue->completed)
