@@ -19,7 +19,7 @@ class GithubController extends Controller
         $githubUser = Socialite::driver('github')->user();
 
         // Can add custom logic here to allow or disallow based on account
-        if (strpos($githubUser->email, 'anton') === false) {
+        if (strpos($githubUser->email, 'anton') === false && strpos($githubUser->email, 'pivotdesign') === false) {
             return redirect('/login')->withErrors(['email' => 'Your GitHub account is not allowed to log in.']);
         }
 
